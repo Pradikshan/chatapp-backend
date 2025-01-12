@@ -1,23 +1,25 @@
-const express = require("express");
-const app = express();
-const PORT = 4000;
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import cors from "cors";
 
-// imports to add communication with client side
-const http = require("http").Server(app);
-const cors = require("cors");
+const app = express();
+const PORT = 3000;
+
+const httpServer = createServer(app);
 
 app.use(cors());
 
-const socketIO = require("socket.io")(http, {
+const io = new Server(httpServer, {
   cors: {
     origin: "http://localhost:5173",
   },
 });
 
 // establish connection with React App
-socketIO.on("connection", (socket) => {
+io.on("connection", (socket) => {
   console.log(`${socket.id} user connected!`);
-  socket.on("disconnect", () => {
+  io.on("disconnect", () => {
     console.log("User disconnected");
   });
 });
@@ -28,6 +30,6 @@ app.get("/api", (req, res) => {
   });
 });
 
-http.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log("Server is listening on: ", PORT);
 });

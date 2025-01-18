@@ -22,6 +22,7 @@ io.on("connection", (socket) => {
 
   socket.on("message", (data) => {
     console.log(`The message: ${JSON.stringify(data)}`);
+    io.emit("messageResponse", data);
   });
 
   io.on("disconnect", () => {

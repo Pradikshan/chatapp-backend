@@ -18,6 +18,13 @@ const io = new Server(httpServer, {
 
 let users = [];
 
+// this is code to periodically clear the users array in case the application was not closed properly
+// currently resets every 30 minutes
+setInterval(() => {
+  users = [];
+  io.emit("newUserResponse", users);
+}, 30 * 60 * 1000);
+
 // establish connection with React App
 io.on("connection", (socket) => {
   console.log(`${socket.id} user connected!`);

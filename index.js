@@ -12,7 +12,7 @@ app.use(cors());
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://realtime-chatapp-frontend.netlify.app/",
+    origin: "https://realtime-chatapp-frontend.netlify.app",
   },
 });
 

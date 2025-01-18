@@ -19,6 +19,11 @@ const io = new Server(httpServer, {
 // establish connection with React App
 io.on("connection", (socket) => {
   console.log(`${socket.id} user connected!`);
+
+  socket.on("message", (data) => {
+    console.log(`The message: ${JSON.stringify(data)}`);
+  });
+
   io.on("disconnect", () => {
     console.log("User disconnected");
   });

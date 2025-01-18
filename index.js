@@ -22,6 +22,8 @@ let users = [];
 io.on("connection", (socket) => {
   console.log(`${socket.id} user connected!`);
 
+  socket.emit("newUserResponse", users);
+
   socket.on("message", (data) => {
     console.log(`The message: ${JSON.stringify(data)}`);
     io.emit("messageResponse", data);
@@ -36,8 +38,11 @@ io.on("connection", (socket) => {
     io.emit("newUserResponse", users);
   });
 
-  io.on("disconnect", () => {
+  socket.on("disconnect", () => {
     console.log("User disconnected");
+    users = users.filter((user) => user.socketId !== socket.id);
+    io.emit("newUserResponse", users);
+    socket.disconnect();
   });
 });
 

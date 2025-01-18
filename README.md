@@ -15,7 +15,7 @@ SocketIO
 
 ## Link to backend code
 
-[Backend code](https://github.com/Pradikshan/chatapp-backend)
+[Frontend code](https://github.com/Pradikshan/chatapp-frontend)
 
 ## Screenshots of the project
 

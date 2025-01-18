@@ -16,6 +16,8 @@ const io = new Server(httpServer, {
   },
 });
 
+let users = [];
+
 // establish connection with React App
 io.on("connection", (socket) => {
   console.log(`${socket.id} user connected!`);
@@ -23,6 +25,15 @@ io.on("connection", (socket) => {
   socket.on("message", (data) => {
     console.log(`The message: ${JSON.stringify(data)}`);
     io.emit("messageResponse", data);
+  });
+
+  socket.on("newUser", (data) => {
+    console.log(`New user available: ${JSON.stringify(data)}`);
+    users.push(data);
+
+    console.log(`Updated users array: ${JSON.stringify(users)}`);
+
+    io.emit("newUserResponse", users);
   });
 
   io.on("disconnect", () => {

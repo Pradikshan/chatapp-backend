@@ -4,11 +4,12 @@ This is a chatapp that enables realtime communiccation.
 
 ## Technologies used
 
-- ReactJS
-- Tailwind CSS
-- NodeJS
-- ExpressJS
-- SocketIO
+- SocketIO⚡️
+- Zustand *️⃣
+- ReactJS ⚛️
+- Tailwind CSS 🎨
+- NodeJS 💻
+- ExpressJS 💻
 
 ## Live demo
 
